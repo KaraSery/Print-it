@@ -18,7 +18,7 @@ const slides = [
 ]
 function initCarousel() {
 	let index = 0;
-	const maxIndex = 3
+	const maxIndex = slides.length
 	const minIndex = 0
 
 	const carousel = document.getElementById('banner')
@@ -38,14 +38,14 @@ function initCarousel() {
 	
 	function carouselPrev() {
 		index -= 1
-		if (index < minIndex) {
+		if (index <= minIndex+1) {
 			index = maxIndex
 		}
 		carouselToggle(index)
 	}
 	function carouselNext() {
 		index += 1
-		if (index > maxIndex) {
+		if (index >= maxIndex+1) {
 			index = minIndex
 		}
 		carouselToggle(index)
