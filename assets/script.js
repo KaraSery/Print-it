@@ -16,9 +16,12 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+function buildDots(slidesLength) {
+	return
+}
 function initCarousel() {
 	let index = 0;
-	const maxIndex = slides.length
+	const maxIndex = slides.length -1
 	const minIndex = 0
 
 	const carousel = document.getElementById('banner')
@@ -32,20 +35,25 @@ function initCarousel() {
 	arrowRight.addEventListener('click', carouselNext)
 
 	// Init dot
+	const dotsContainer = document.querySelector('.dots')
+	// Set dots container innerHTML to list of .dot span elements from slides length
+	dotsContainer.innerHTML = Array(slides.length).fill(null).map(
+		(i) => '<span class="dot"></span>').join('')
 
+	// Set first (index = 0) dot selected
 	const dots = Array.from(document.querySelectorAll('.dot'))
 	dots[index].classList.add('dot_selected')
-	
+
 	function carouselPrev() {
 		index -= 1
-		if (index <= minIndex+1) {
+		if (index < minIndex) {
 			index = maxIndex
 		}
 		carouselToggle(index)
 	}
 	function carouselNext() {
 		index += 1
-		if (index >= maxIndex+1) {
+		if (index > maxIndex) {
 			index = minIndex
 		}
 		carouselToggle(index)
